@@ -94,7 +94,7 @@ void LinkedList::delete_node_pos(int position) {
         p = p->next;
         i++;
     }
-    if (i != position) {
+    if (i != position || nullptr == first) {
         std::cout << "\nGiven position doesn't exist.\n";
     }
     else {
@@ -161,7 +161,7 @@ void LinkedList::reverse_sll() {
             pe = first = p;
             p = helper;
             helper = helper->next;
-    }
+        }
         p->next = pe;
         pe = first = p;
     }
@@ -170,7 +170,7 @@ void LinkedList::reverse_sll() {
 
 void LinkedList::display_sll() {
     Node* current_node = first;
-    if(current_node == nullptr) std::cout<<"\nThe Singly Linked List is empty!\n";
+    if(nullptr == current_node) std::cout<<"\nThe Singly Linked List is empty!\n";
     while(current_node != nullptr) {
         std::cout << current_node->data << " - ";
         current_node = current_node->next;
@@ -351,7 +351,9 @@ void LinkedList::run() {
             display_menu();
             break;
         case 6:
-            std::cout <<"\nThe maximum node value is: " << max_node()->data << '\n';
+            if(max_node() != nullptr)
+                std::cout <<"\nThe maximum node value is: " << max_node()->data << '\n';
+            else std::cout << "\nThe SLL is empty!\n";
             display_menu();
             break;
         case 7:
